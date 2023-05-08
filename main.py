@@ -1,40 +1,12 @@
 import streamlit as st
 import pymongo
 import pdfplumber
-import smtplib
-import ssl
+
 
 st.title("Job seeker Portal!!")
 st.subheader(':blue[Apply Now!]')
 
-def send_email(email_to, username):
-    #Setup port number and server name
-    #Standard secure SMTP port / Google SMTP Server
-    smtp_port_num = 587
-    smtp_server = "smtp.gmail.com"
 
-    email_from = "team334353@gmail.com"
-    password = "naqvsvzdiylxixde"
-
-    msg = f"Dear {username}, Thanks for applying for this job position. We will review your application with our HR system and get back to you soon!"
-
-    simp_email_context = ssl.create_default_context()
-
-    try:
-        st.write("Connecting to Server..")
-        TIE_server = smtplib.SMTP(smtp_server,smtp_port_num)
-        TIE_server.starttls(context=simp_email_context)
-        TIE_server.login(email_from,password)
-
-
-        TIE_server.sendmail(email_from,email_to,msg)
-        st.write(f"Sending email to {email_to}")
-
-    except Exception as e:
-        st.write(e)
-
-    finally:
-        TIE_server.quit() 
 
 def dataConnectivity():
     conn_str = "mongodb://project3343:rsproject@ac-gjl3aea-shard-00-00.sop0wqm.mongodb.net:27017,ac-gjl3aea-shard-00-01.sop0wqm.mongodb.net:27017,ac-gjl3aea-shard-00-02.sop0wqm.mongodb.net:27017/?ssl=true&replicaSet=atlas-xr3bsz-shard-0&authSource=admin&retryWrites=true&w=majority"
@@ -113,7 +85,7 @@ with st.form("form1",clear_on_submit=True):
             }
             return newData 
         users.insert_one(newdataFun())
-        send_email(Email, Name)
+       
 
         st.subheader(':blue[Submitted Sucessfully]')
         
