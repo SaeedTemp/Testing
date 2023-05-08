@@ -13,4 +13,13 @@ jobs:
 
       - run:
           name: Run tests
-          command: python -m unittest discover -s . -p 'test_*.py'
+          command: python -m unittest test.py
+      
+      
+      
+workflows:
+  version:2
+  build_and_test:
+    jobs:
+     - build
+  
