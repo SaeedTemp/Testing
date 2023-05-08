@@ -4,7 +4,7 @@ import pdfplumber
 import smtplib
 import ssl
 
-st.title("Job seeker Portal")
+st.title("Job seeker Portal!!")
 st.subheader(':blue[Apply Now!]')
 
 def send_email(email_to, username):
